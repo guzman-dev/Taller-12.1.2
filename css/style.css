@@ -26,3 +26,20 @@ main {
 .offcanvas-top{
     height: fit-content;
 }
+
+h3{
+    color: white;
+}
+
+p{
+    color: gray;
+}
+
+.fa-star:not(.checked) {
+  color: white;
+}
+
+.offcanvas-body {
+  overflow: visible !important;
+  position: relative;
+}

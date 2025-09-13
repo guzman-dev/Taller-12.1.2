@@ -22,16 +22,13 @@ function mostrarPelis(){
         let elementoDeLista = document.createElement("li");
         let nombrePeli = document.createElement("h3");
         let descPeli = document.createElement("p");
-
         let calificacion = document.createElement("div");
         for (let i = 0; i < 5; i++) {
-            if((i++) === puntuacion){
-                calificacion.innerHTML += "<span class='fa fa-star checked'></span>"
+            if(i < puntuacion){
+                calificacion.innerHTML += "<span class='fa fa-star checked'></span>"  
             }else{
                 calificacion.innerHTML += "<span class='fa fa-star'></span>"
             }
-            
-            
         }
 
         nombrePeli.innerHTML = peliActual.title;
@@ -41,6 +38,31 @@ function mostrarPelis(){
         elementoDeLista.appendChild(descPeli);
         elementoDeLista.appendChild(calificacion);
         elementoDeLista.classList.add("list-group-item");
+        elementoDeLista.classList.add("bg-dark");
+
+        elementoDeLista.addEventListener("click", () => {
+            let offCanvasTitle = document.getElementById("offcanvasTitle");
+            let offCanvasDescription = document.getElementById("offcanvasDescription");
+            let offCanvasGenres = document.getElementById("offcanvasGenres");
+            let year = (peliActual.release_date.split("-"))[0];
+
+            offCanvasTitle.textContent = peliActual.title;
+            offCanvasDescription.textContent = peliActual.overview;
+            offCanvasGenres.innerHTML = "";
+            let genres = peliActual.genres;
+            genres.forEach(genre => {
+                offCanvasGenres.textContent += genre.name + " - ";
+            })
+
+            document.getElementById("añoPeli").textContent = "Year: " + year;
+            document.getElementById("largoPeli").textContent = "Runtime: " + peliActual.runtime + " mins";
+            document.getElementById("presupuestoPeli").textContent = "Budget: $" + peliActual.budget;
+            document.getElementById("gananciaPeli").textContent = "Revenue: $" + peliActual.revenue;
+
+            const offcanvas = new bootstrap.Offcanvas(document.getElementById("mostradorDePeli"));
+            offcanvas.show();
+
+        })
 
         lista.appendChild(elementoDeLista);
 
