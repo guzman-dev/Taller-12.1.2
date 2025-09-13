@@ -43,3 +43,7 @@ p{
   overflow: visible !important;
   position: relative;
 }
+
+.dropdown-menu {
+  z-index: 2000; /* Must be higher than the offcanvas (which is 1050–1060) */
+}
